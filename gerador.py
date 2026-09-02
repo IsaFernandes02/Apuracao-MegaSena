@@ -9,14 +9,14 @@ def gerar_id():
     return f"AP-{codigo}"
 
 
-def gerar_arquivo_csv(quantidade_linhas):
-    with open("apostas.csv", "w", newline="", encoding="utf-8") as arquivo:
-        escritor = csv.writer(arquivo)
-        for _ in range(quantidade_linhas):
-            numeros = random.sample(range(1, 61), 6)
+with open("apostas.csv", "w", newline="") as arquivo:
+    escritor = csv.writer(arquivo)
+
+    for _ in range(10):
+        quantidade_numeros = random.randint(6, 15)
+        numeros = random.sample(range(1, 61), quantidade_numeros)
+
+        if 6 <= len(numeros) <= 15:
             escritor.writerow([gerar_id()] + numeros)
 
-
-if __name__ == "__main__":
-    gerar_arquivo_csv(10)
-    print("Arquivo apostas.csv gerado com sucesso!")
+print("Arquivo apostas.csv gerado com sucesso!")
